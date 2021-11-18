@@ -6,6 +6,8 @@ AWS EKS, Istio 를 구성하고 Kubernetes API 를 통해 애플리케이션을 
 - HandsOn을 위한 MacOS 또는 Ubuntu 환경이 준비 되어야 합니다.
 - AWS CLI 및 Terraform 등 주요 프로그램이 사전에 설치 되어야 합니다.  
   [주요 프로그램 설치 참고](./installation-on-mac.md)
+- 인터넷 서비스를 위해 도메인 등록 및 ACM 인증서를 발급 받아야 합니다.   
+  [도메인 및 인증서 발급 참고](./docs/domain-acm.md)
 
 ### AWS 신규 사용자 추가
 최초 AWS 관리 콘솔에 로그인 하는 계정은 ROOT 어카운트 입니다.  
