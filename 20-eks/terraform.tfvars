@@ -15,4 +15,4 @@ context = {
     pri_domain              = "mydemo.in"
 }
 
-vpc_cidr                    = "10.200"
+namespace                   = "mydemo"
