@@ -15,9 +15,9 @@ terraform {
 }
 
 provider "aws" {
-  region      = var.context.aws_region
-  profile     = var.context.aws_profile
-  shared_credentials_file = var.context.aws_credentials_file
+  region                  = "ap-northeast-2"
+  profile                 = "terran"
+  shared_credentials_file = "$HOME/.aws/credentials"
 }
 
 data "aws_caller_identity" "current" {}
@@ -31,8 +31,14 @@ data "aws_eks_cluster_auth" "this" {
   name = module.eks.cluster_id
 }
 
+locals {
+  eks_endpoint       = data.aws_eks_cluster.this.endpoint
+  eks_auth_token     = data.aws_eks_cluster_auth.this.token
+  eks_ca_certificate = base64decode(data.aws_eks_cluster.this.certificate_authority.0.data)
+}
+
 provider "kubernetes" {
-  host                    = data.aws_eks_cluster.this.endpoint
-  token                   = data.aws_eks_cluster_auth.this.token
-  cluster_ca_certificate  = base64decode(data.aws_eks_cluster.this.certificate_authority.0.data)
+  host                   = local.eks_endpoint
+  token                  = local.eks_auth_token
+  cluster_ca_certificate = local.eks_ca_certificate
 }

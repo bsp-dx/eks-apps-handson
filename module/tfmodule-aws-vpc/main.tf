@@ -1,15 +1,9 @@
 locals {
   name = var.context.project
-  name_prefix = format("%s-%s%s", var.context.project, var.context.region_alias, var.context.env_alias)
+  name_prefix = var.context.name_prefix
   name_suffix = format("%s%s", var.context.region_alias, var.context.env_alias)
 
-  tags = merge(var.tags,
-          {
-            Project = var.context.project
-            Environment = var.context.environment
-            Team = var.context.team
-            Owner = var.context.owner
-          })
+  tags = merge(var.tags, var.context.tags)
 
   # Only private subnet can bind NAT Gateway
   max_subnet_length = max(

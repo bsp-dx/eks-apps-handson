@@ -2,11 +2,21 @@
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Action": [
-        "*"
-      ],
       "Effect": "Allow",
-      "Resource": "*"
+      "Action": [
+        "eks:DescribeNodegroup",
+        "eks:ListNodegroups",
+        "eks:DescribeCluster",
+        "eks:ListClusters",
+        "eks:AccessKubernetesApi",
+        "eks:ListUpdates",
+        "eks:ListFargateProfiles",
+        "ssm:GetParameter"
+      ],
+      "Resource": [
+        "arn:aws:eks::*",
+        "arn:aws:ssm::*"
+      ]
     },
     {
       "Effect": "Allow",

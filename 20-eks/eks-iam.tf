@@ -8,7 +8,7 @@ resource "aws_iam_policy" "mfa_enabled" {
 
 # EKS Admin Policy
 resource "aws_iam_policy" "admin" {
-  name = local.iam_admin_policy
+  name = local.iam_eks_admin_policy
   path = "/"
 
   policy = templatefile("${path.module}/policy/AssumeRoleAdminPolicy.json", {

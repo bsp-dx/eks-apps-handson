@@ -1,5 +1,5 @@
 data "aws_acm_certificate" "this" {
-  domain = var.context.domain
+  domain = module.ctx.domain
 }
 
 data "aws_vpc" "this" {

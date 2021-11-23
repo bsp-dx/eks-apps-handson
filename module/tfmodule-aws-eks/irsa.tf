@@ -6,21 +6,14 @@
 # https://crt.sh/?q=9E99A48A9960B14926BB7F3B02E22DA2B0AB7280
 # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html
 # https://github.com/terraform-providers/terraform-provider-aws/issues/10104
-locals {
-  sts_principal = "sts.${data.aws_partition.current.dns_suffix}"
-}
 
-
-data "tls_certificate" "certificate" {
-  url             = flatten(concat(aws_eks_cluster.this[*].identity[*].oidc.0.issuer, [""]))[0]
-  depends_on      = [null_resource.wait_for_cluster]
-}
-
+# Enable OpenID Connect Provider for EKS to enable IRSA
 resource "aws_iam_openid_connect_provider" "oidc_provider" {
-  count           = var.enable_irsa && var.create_eks ? 1 : 0
+  count = var.create_eks ? 1 : 0
 
-  client_id_list  = flatten([local.sts_principal, "sts.amazonaws.com"])
-  thumbprint_list = coalescelist([data.tls_certificate.certificate.certificates[0].sha1_fingerprint], [var.eks_oidc_root_ca_thumbprint])
-  url             = data.tls_certificate.certificate.url
-  depends_on      = [null_resource.wait_for_cluster]
+  client_id_list  = local.client_id_list
+  thumbprint_list = [var.eks_oidc_root_ca_thumbprint]
+  url             = local.cluster_oidc_issuer_url
+
+  tags = merge(local.tags,  {Name = "${local.cluster_name}-irsa"},)
 }
