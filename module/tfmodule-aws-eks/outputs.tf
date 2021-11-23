@@ -86,7 +86,7 @@ output "kubeconfig_filename" {
 }
 
 output "oidc_provider_arn" {
-  description = "The ARN of the OIDC Provider if `enable_irsa = true`."
+  description = "The ARN of the OIDC Provider."
   value       = var.create_eks ? concat(aws_iam_openid_connect_provider.oidc_provider[*].arn, [""])[0] : null
 }
 
