@@ -1,7 +1,7 @@
 module "istio" {
   source = "./modules/istio"
 
-  create_istio      = true
+  create_istio      = var.create_eks && var.enable_istio ? true: false
   context           = var.context
   ingress_config    = {
 

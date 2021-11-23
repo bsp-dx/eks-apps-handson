@@ -1,11 +1,7 @@
 variable "create_istio" {
   description = "Create Istio Controller"
   type        = bool
-  default     = true
-}
-
-locals {
-  enabled_istio = true # 조건을 통해 Istio 설정 여부를 결정 예정
+  default     = false
 }
 
 variable "ingress_config" {
