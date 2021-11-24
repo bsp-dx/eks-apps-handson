@@ -30,7 +30,7 @@ variable "cluster_version" {
 variable "kubeconfig_output_path" {
   description = "Where to save the Kubectl config file (if `write_kubeconfig = true`). Assumed to be a directory if the value ends with a forward slash `/`."
   type        = string
-  default     = "$HOME/.kube/"
+  default     = ""
 }
 
 variable "kubeconfig_file_permission" {

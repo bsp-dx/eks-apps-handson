@@ -1,8 +1,8 @@
 ### ----- EKS Module -----
 
-#output "debug_kubeconfig_path" {
-#  value = module.eks.kubeconfig_filename
-#}
+output "kubeconfig_filename" {
+  value = module.eks.kubeconfig_filename
+}
 
 output "eks_endpoint" {
   value = local.eks_endpoint
