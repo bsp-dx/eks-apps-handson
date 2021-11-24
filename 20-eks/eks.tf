@@ -62,6 +62,8 @@ module "eks" {
     }
   }
 
+  enable_istio = false
+
   depends_on = [ aws_iam_role.admin, aws_iam_role.viewer, module.ctx ]
 
 }
