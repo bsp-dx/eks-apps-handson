@@ -1,7 +1,7 @@
-# AWSLoadBalancerControllerIAMPolicy
 resource "aws_iam_policy" "alb_ingress_controller" {
   count  = var.create_istio ? 1 : 0
   name   = "ALBIngressControllerPolicy"
+  # AWSLoadBalancerControllerIAMPolicy
   policy = file("${path.module}/policy/ALBIngressControllerPolicy.json")
 }
 
@@ -12,7 +12,7 @@ resource "aws_iam_policy" "ec2_asg" {
 }
 
 resource "aws_iam_role" "oidc" {
-  count  = var.create_istio ? 1 : 0
+  count = var.create_istio ? 1 : 0
   name  = format("%sEKSOidcRole", var.context.project)
 
   assume_role_policy = templatefile("${path.module}/policy/AssumeRoleOIDCPolicy.json", {

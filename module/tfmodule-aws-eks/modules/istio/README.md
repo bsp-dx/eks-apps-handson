@@ -34,3 +34,8 @@ Edit file
 - [Installation Options Value](https://istio.io/v1.5/docs/reference/config/installation-options/)
 - [Manifest Profiles](https://github.com/istio/istio/tree/master/manifests/profiles)
   [Default](https://istio.io/latest/docs/setup/additional-setup/config-profiles/)
+
+Uninstall istio
+```
+istioctl x uninstall --purge
+```

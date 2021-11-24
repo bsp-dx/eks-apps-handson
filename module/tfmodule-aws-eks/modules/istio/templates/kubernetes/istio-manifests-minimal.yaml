@@ -1,0 +1,9 @@
+# see - https://raw.githubusercontent.com/istio/istio/master/manifests/profiles/default.yaml
+# The minimal profile will install just the core control plane
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  components:
+    ingressGateways:
+      - name: istio-ingressgateway
+        enabled: false
