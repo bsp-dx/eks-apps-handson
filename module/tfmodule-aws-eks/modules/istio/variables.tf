@@ -4,20 +4,16 @@ variable "create_istio" {
   default     = false
 }
 
-variable "ingress_config" {
-  type = object({
-#    istio_operator                = string # ISTIO Operator Yaml
-#    istio_ingress                 = string # ISTIO Ingress Gateway Yaml
-#    istio_ingress_controller_yaml = string # ISTIO Ingress Controller Gateway Yaml
-#    cert_manager_webhook_yaml     = string # Kubernetes Certification webhook
-  })
-  default = {}
-  description = <<EOT
-  ingress_config = {
-
-  }
-EOT
+variable "kubeconfig_path" {
+  description = "kubeconfig filepath"
+  type        = string
 }
+
+variable "istio_manifest_filepath" {
+  description = "Istio Operator Manifest template file path"
+  type        = string
+}
+
 
 #variable "project" {
 #  type        = string

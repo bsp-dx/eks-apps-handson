@@ -3,3 +3,9 @@ variable "enable_istio" {
   type = bool
   default = true
 }
+
+variable "istio_manifest_filepath" {
+  description = "Istio Operator Manifest template file path"
+  type        = string
+  default     = null
+}
