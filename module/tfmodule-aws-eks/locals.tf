@@ -270,4 +270,6 @@ locals {
       )
     )
   ]
+
+  oidc_provider_arn = var.create_eks ? concat(aws_iam_openid_connect_provider.oidc_provider[*].arn, [""])[0] : null
 }

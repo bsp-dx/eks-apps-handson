@@ -7,6 +7,10 @@ output "cluster_id" {
   depends_on = [data.http.wait_for_cluster]
 }
 
+output "cluster_name" {
+  value = local.cluster_name
+}
+
 output "cluster_arn" {
   description = "The Amazon Resource Name (ARN) of the cluster."
   value       = local.cluster_arn
@@ -87,30 +91,30 @@ output "kubeconfig_filename" {
 
 output "oidc_provider_arn" {
   description = "The ARN of the OIDC Provider."
-  value       = var.create_eks ? concat(aws_iam_openid_connect_provider.oidc_provider[*].arn, [""])[0] : null
+  value       = local.oidc_provider_arn
 }
 
 output "workers_asg_arns" {
   description = "IDs of the autoscaling groups containing workers."
-  value = concat(
-    aws_autoscaling_group.workers.*.arn,
-    aws_autoscaling_group.workers_launch_template.*.arn,
+  value       = concat(
+  aws_autoscaling_group.workers.*.arn,
+  aws_autoscaling_group.workers_launch_template.*.arn,
   )
 }
 
 output "workers_asg_names" {
   description = "Names of the autoscaling groups containing workers."
-  value = concat(
-    aws_autoscaling_group.workers.*.id,
-    aws_autoscaling_group.workers_launch_template.*.id,
+  value       = concat(
+  aws_autoscaling_group.workers.*.id,
+  aws_autoscaling_group.workers_launch_template.*.id,
   )
 }
 
 output "workers_user_data" {
   description = "User data of worker groups"
-  value = concat(
-    local.launch_configuration_userdata_rendered,
-    local.launch_template_userdata_rendered,
+  value       = concat(
+  local.launch_configuration_userdata_rendered,
+  local.launch_template_userdata_rendered,
   )
 }
 
@@ -146,34 +150,38 @@ output "worker_security_group_id" {
 
 output "worker_iam_instance_profile_arns" {
   description = "default IAM instance profile ARN for EKS worker groups"
-  value = concat(
-    aws_iam_instance_profile.workers.*.arn,
-    aws_iam_instance_profile.workers_launch_template.*.arn
+  value       = concat(
+  aws_iam_instance_profile.workers.*.arn,
+  aws_iam_instance_profile.workers_launch_template.*.arn
   )
 }
 
 output "worker_iam_instance_profile_names" {
   description = "default IAM instance profile name for EKS worker groups"
-  value = concat(
-    aws_iam_instance_profile.workers.*.name,
-    aws_iam_instance_profile.workers_launch_template.*.name
+  value       = concat(
+  aws_iam_instance_profile.workers.*.name,
+  aws_iam_instance_profile.workers_launch_template.*.name
   )
 }
 
 output "worker_iam_role_name" {
   description = "default IAM role name for EKS worker groups"
-  value = coalescelist(
-    aws_iam_role.workers.*.name,
-    [""]
-  )[0]
+  value       = coalescelist(
+  aws_iam_role.workers.*.name,
+  [""]
+  )[
+  0
+  ]
 }
 
 output "worker_iam_role_arn" {
   description = "default IAM role ARN for EKS worker groups"
-  value = coalescelist(
-    aws_iam_role.workers.*.arn,
-    [""]
-  )[0]
+  value       = coalescelist(
+  aws_iam_role.workers.*.arn,
+  [""]
+  )[
+  0
+  ]
 }
 
 output "fargate_profile_ids" {
@@ -208,5 +216,5 @@ output "security_group_rule_cluster_https_worker_ingress" {
 
 output "oidc_role_arn" {
   description = "EKS OIDC Role arn to provide authentication for kubernetes resources can control to AWS Resources like ELB, EC2"
-  value = module.istio.oidc_role_arn
+  value       = coalescelist(aws_iam_role.oidc.*.arn, [""])[0]
 }

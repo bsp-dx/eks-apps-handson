@@ -4,6 +4,12 @@ variable "enable_istio" {
   default     = true
 }
 
+variable "kubernetes_target" {
+  description = "Kubernetes resource filepath"
+  type        = string
+  default     = "./target/kubernetes"
+}
+
 variable "cert_manager_filepath" {
   description = "Kubernetes Certificate Management file path"
   type        = string

@@ -12,7 +12,7 @@ data "aws_vpc" "this" {
 data "aws_subnet_ids" "subnets" {
   vpc_id = data.aws_vpc.this.id
   filter {
-    name   = "tag:kubernetes.io/cluster/${local.cluster_name}"
+    name   = "tag:kubernetes.io/cluster/${module.eks.cluster_name}"
     values = ["shared"]
   }
 }

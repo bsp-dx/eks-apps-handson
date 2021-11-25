@@ -16,7 +16,3 @@ output "eks_auth_token" {
 output "eks_ca_certificate" {
   value = local.eks_ca_certificate
 }
-
-output "oidc_role_arn" {
-  value = module.eks.oidc_role_arn
-}
