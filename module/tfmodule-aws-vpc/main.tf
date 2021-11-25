@@ -2,6 +2,7 @@ locals {
   name = var.context.project
   name_prefix = var.context.name_prefix
   name_suffix = format("%s%s", var.context.region_alias, var.context.env_alias)
+  vpc_name    = format("%s-vpc", local.name_prefix)
 
   tags = merge(var.tags, var.context.tags)
 
@@ -61,7 +62,7 @@ resource "aws_vpc" "this" {
   tags = merge(
     local.tags,
     var.vpc_tags,
-    { Name = format("%s-vpc", local.name_prefix) },
+    { Name = local.vpc_name },
   )
 }
 

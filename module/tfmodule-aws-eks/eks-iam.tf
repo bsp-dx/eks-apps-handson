@@ -1,16 +1,15 @@
 resource "aws_iam_policy" "alb_ingress_controller" {
-  name   = "ALBIngressControllerPolicy"
-  # AWSLoadBalancerControllerIAMPolicy
-  policy = file("${path.module}/policy/ALBIngressControllerPolicy.json")
+  name   = "${local.project}ALBIngressControllerPolicy"
+  policy = file("${path.module}/policy/ALBIngressControllerPolicy.json") # AWSLoadBalancerControllerIAMPolicy
 }
 
 resource "aws_iam_policy" "ec2_asg" {
-  name   = "AWSEC2AutoscalerPolicy"
+  name   = "${local.project}AWSEC2AutoscalerPolicy"
   policy = file("${path.module}/policy/AWSEC2AutoscalerPolicy.json")
 }
 
 resource "aws_iam_role" "oidc" {
-  name  = format("%sEKSOidcRole", var.context.project)
+  name = "${local.project}EKSOidcRole"
 
   assume_role_policy = templatefile("${path.module}/policy/AssumeRoleOIDCPolicy.json", {
     oidc_provider_arn = local.oidc_provider_arn
@@ -25,8 +24,8 @@ resource "aws_iam_role" "oidc" {
 }
 
 resource "aws_iam_policy" "allow_ecr_on_node_groups" {
-  count = var.enable_ecr_access_policy ? 1 : 0
-  name = "AllowECROnNodeGroupPolicy"
+  count       = var.enable_ecr_access_policy ? 1 : 0
+  name        = "${local.project}AllowECROnNodeGroupPolicy"
   description = "Policy that allows pull images from ECR repositories"
 
   policy = <<EOF
@@ -49,7 +48,7 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "allow_ecr_on_node_groups" {
-  count = var.enable_ecr_access_policy ? 1 : 0
+  count      = var.enable_ecr_access_policy ? 1 : 0
   role       = local.worker_iam_role_name
   policy_arn = aws_iam_policy.allow_ecr_on_node_groups[0].arn
 }

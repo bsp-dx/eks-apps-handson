@@ -10,6 +10,7 @@ module "eks" {
   # for EKS
   cluster_version           = "1.21"
   cluster_service_ipv4_cidr = "10.21.0.0/16"
+  # cluster_enabled_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
   # for VPC
   vpc_id  = data.aws_vpc.this.id
