@@ -49,13 +49,13 @@ resource "local_file" "istio_manifest" {
 
 resource "local_file" "ingress_controller" {
   count             = var.create_istio ? 1 : 0
-  sensitive_content = templatefile(local.istio_manifest_targetfile, {
+  sensitive_content = templatefile(local.ingress_controller_srcfile, {
     acm_certificate_arn = var.acm_certificate_arn
-    public_security_group_id = "security_group_ids" # "${public_security_group_id},${worker_security_group_id}"
-    load_balancer_name = local.alb_name
-    resource_tags      = local.alb_resource_tags
+    security_group_ids  = var.security_group_ids
+    load_balancer_name  = local.alb_name
+    resource_tags       = local.alb_resource_tags
   })
-  filename          = local.istio_manifest_targetfile
+  filename          = local.ingress_controller_targetfile
 }
 
 
