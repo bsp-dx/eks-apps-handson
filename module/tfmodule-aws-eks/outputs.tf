@@ -205,3 +205,8 @@ output "security_group_rule_cluster_https_worker_ingress" {
   description = "Security group rule responsible for allowing pods to communicate with the EKS cluster API."
   value       = aws_security_group_rule.cluster_https_worker_ingress
 }
+
+output "oidc_role_arn" {
+  description = "EKS OIDC Role arn to provide authentication for kubernetes resources can control to AWS Resources like ELB, EC2"
+  value = module.istio.oidc_role_arn
+}

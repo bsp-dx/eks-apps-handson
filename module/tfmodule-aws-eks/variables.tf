@@ -16,11 +16,6 @@ variable "cluster_log_retention_in_days" {
   default     = 90
 }
 
-variable "cluster_name" {
-  description = "EKS cluster name"
-  type        = string
-}
-
 variable "cluster_version" {
   description = "Kubernetes minor version to use for the EKS cluster (for example 1.21)."
   type        = string

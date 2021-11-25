@@ -7,7 +7,6 @@ locals {
   aws_account_id        = data.aws_caller_identity.current.account_id
   project               = module.ctx.project
   name_prefix           = module.ctx.name_prefix
-  cluster_name          = module.ctx.eks_name
   iam_mfa_policy        = format("%sMFAForcedPolicy", local.project)
   iam_eks_admin_role    = format("%sEKSAdminRole", local.project)
   iam_eks_admin_policy  = format("%sAssumeRoleAdminPolicy", local.project)

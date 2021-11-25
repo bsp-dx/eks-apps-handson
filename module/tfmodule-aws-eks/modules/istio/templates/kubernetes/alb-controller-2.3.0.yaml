@@ -799,7 +799,7 @@ spec:
       - args:
         - --cluster-name={{cluster_name}}
         - --ingress-class=alb
-        image: amazon/aws-alb-ingress-controller:v2.2.4
+        image: amazon/aws-alb-ingress-controller:v2.3.0
         livenessProbe:
           failureThreshold: 2
           httpGet:
@@ -839,7 +839,7 @@ spec:
           defaultMode: 420
           secretName: aws-load-balancer-webhook-tls
 ---
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   labels:
@@ -855,7 +855,7 @@ spec:
     name: aws-load-balancer-selfsigned-issuer
   secretName: aws-load-balancer-webhook-tls
 ---
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   labels:

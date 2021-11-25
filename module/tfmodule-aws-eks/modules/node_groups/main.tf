@@ -94,6 +94,7 @@ resource "aws_eks_node_group" "workers" {
 
   tags = merge(
     var.tags,
+    { Name = lookup(each.value, "name", join("-", [var.cluster_name, each.key])) },
     lookup(var.node_groups_defaults, "additional_tags", {}),
     lookup(var.node_groups[each.key], "additional_tags", {}),
   )

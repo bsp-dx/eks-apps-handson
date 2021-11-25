@@ -1,5 +1,5 @@
 output "oidc_role_arn" {
-  description = "EKS OIDC arn to provide authentication for kubernetes resources can control to AWS Resources like ELB, EC2"
+  description = "EKS OIDC Role arn to provide authentication for kubernetes resources can control to AWS Resources like ELB, EC2"
   value = coalescelist(aws_iam_role.oidc.*.arn, [""])[0]
 }
 

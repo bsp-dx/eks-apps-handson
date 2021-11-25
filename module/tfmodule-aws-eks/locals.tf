@@ -4,7 +4,7 @@ locals {
   name_prefix = var.context.name_prefix
   tags        = var.context.tags
   # EKS Cluster
-  cluster_name                      = var.cluster_name
+  cluster_name                      = "${local.name_prefix}-eks"
   cluster_id                        = coalescelist(aws_eks_cluster.this[*].id, [""])[0]
   cluster_arn                       = coalescelist(aws_eks_cluster.this[*].arn, [""])[0]
   cluster_endpoint                  = coalescelist(aws_eks_cluster.this[*].endpoint, [""])[0]

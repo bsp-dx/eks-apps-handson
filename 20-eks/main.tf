@@ -8,7 +8,6 @@ module "eks" {
   context                       = module.ctx.context
 
   # for EKS
-  cluster_name                  = local.cluster_name
   cluster_version               = "1.21"
   cluster_service_ipv4_cidr     = "10.21.0.0/16"
 

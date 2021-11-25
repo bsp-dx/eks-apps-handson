@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-pub-nlb-service
+  labels:
+    app: simple-pub-nlb-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-name: my-simple-nlb
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: "Environment=Dev,Name=my-simple-nlb"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy: ELBSecurityPolicy-2016-08
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:ap-northeast-2:827519537363:certificate/a398f9ad-229e-4e77-9390-80f622bda031"
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp,http"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: 443,8883
+    service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
+#    service.beta.kubernetes.io/aws-load-balancer-access-log-enabled: "true" # not set
+#    service.beta.kubernetes.io/aws-load-balancer-access-log-emit-interval: "15" # not set
+#    service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name: "random-bucket-name" # not set
+#    service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-prefix: "random-bucket-name/dev/test-nlb-dev" # not set
+spec:
+  ports:
+    - name: mqtt
+      protocol: TCP
+      port: 443
+      targetPort: 8080
+    - name: websocket
+      protocol: TCP
+      port: 8883
+      targetPort: 1883
+  type: LoadBalancer
+  selector:
+    app: simple-pub-nlb-service
