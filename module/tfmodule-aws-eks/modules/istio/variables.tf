@@ -29,7 +29,8 @@ variable "acm_certificate_arn" {
 
 variable "security_group_ids" {
   description = "SecurityGroup id list for ALB Ingress Controller"
-  type        = list
+  type        = string
+  # "sg-012301238,sg-3nkdfsh23423,sg-4234234"
 }
 
 variable "kubeconfig_path" {
