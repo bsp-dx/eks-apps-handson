@@ -554,7 +554,7 @@ metadata:
   name: aws-load-balancer-controller
   namespace: kube-system
   annotations:
-      eks.amazonaws.com/role-arn: {{oidc_role_arn}}
+      eks.amazonaws.com/role-arn: ${oidc_role_arn}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -798,7 +798,7 @@ spec:
     spec:
       containers:
       - args:
-        - --cluster-name={{cluster_name}}
+        - --cluster-name=${cluster_name}
         - --ingress-class=alb
         image: amazon/aws-alb-ingress-controller:v2.3.0
         livenessProbe:

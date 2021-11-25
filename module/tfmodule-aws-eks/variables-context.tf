@@ -9,6 +9,7 @@ variable "context" {
     owner        = string # project owner
     team         = string # Team name of Devops Transformation
     cost_center  = number # Cost Center
+    domain       = string # public domain name
     name_prefix  = string # resource name prefix
     tags         = object({
       Project     = string

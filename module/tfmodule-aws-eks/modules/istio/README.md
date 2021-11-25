@@ -57,6 +57,5 @@ wget https://github.com/jetstack/cert-manager/releases/download/v1.6.1/cert-mana
 1. OIDC IAM Role
 2. cert-manager
 3. aws-load-balancer-controller
-4. Istio core
-5. Istio ingress-gateway NLB 
-6. Istio ingress-controller ALB
+4. Istio manifest (core / ingress-gateway) 
+5. Istio ingress-controller ALB

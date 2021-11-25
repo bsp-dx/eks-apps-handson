@@ -1,7 +1,3 @@
-data "aws_acm_certificate" "this" {
-  domain = module.ctx.domain
-}
-
 data "aws_vpc" "this" {
   filter {
     name   = "tag:Name"

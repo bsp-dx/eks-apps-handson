@@ -166,22 +166,12 @@ output "worker_iam_instance_profile_names" {
 
 output "worker_iam_role_name" {
   description = "default IAM role name for EKS worker groups"
-  value       = coalescelist(
-  aws_iam_role.workers.*.name,
-  [""]
-  )[
-  0
-  ]
+  value       = coalescelist(aws_iam_role.workers.*.name,[""])[0]
 }
 
 output "worker_iam_role_arn" {
   description = "default IAM role ARN for EKS worker groups"
-  value       = coalescelist(
-  aws_iam_role.workers.*.arn,
-  [""]
-  )[
-  0
-  ]
+  value       = coalescelist(aws_iam_role.workers.*.arn,[""])[0]
 }
 
 output "fargate_profile_ids" {

@@ -22,6 +22,16 @@ variable "cluster_name" {
   type        = string
 }
 
+variable "acm_certificate_arn" {
+  description = "ALB Ingress Controller ACM Certification ARN"
+  type        = string
+}
+
+variable "security_group_ids" {
+  description = "SecurityGroup id list for ALB Ingress Controller"
+  type        = list
+}
+
 variable "kubeconfig_path" {
   description = "kubeconfig filepath"
   type        = string
@@ -52,20 +62,7 @@ variable "istio_manifest_filepath" {
   type        = string
 }
 
-
-#variable "project" {
-#  type        = string
-#  description = "project name is usally account's project name or platform name"
-#}
-#
-#variable "region" {
-#  type        = string
-#  description = "default region to create a resource from aws"
-#}
-
-#variable "oidc_provider_arn" {
-#  type        = string
-#  description = "The ARN of the EKS OIDC Provider."
-#}
-
-
+variable "ingress_controller_filepath" {
+  description = "AWS ALB Controller template file path"
+  type        = string
+}
