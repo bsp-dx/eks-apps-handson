@@ -1,9 +1,9 @@
 module "ctx" {
-  source = "../../context"
+  source = "../context"
 }
 
 module "ecr" {
-  source = "../../module/tfmodule-aws-ecr"
+  source = "../module/tfmodule-aws-ecr"
 
   image_names          = ["sample-golang-service", "sample-spring-boot-service"]
   principals_full      = ["arn:aws:iam::827519537363:user/terran@bespinglobal.com"]

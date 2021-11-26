@@ -1,4 +1,4 @@
-# tfmodule-aws-ecr
+# ECR
 
 AWS ECR 프라이빗 저장소를 생성 합니다.
 
@@ -7,6 +7,10 @@ AWS ECR 프라이빗 저장소를 생성 합니다.
 ERC 테라폼 모듈을 통해 AWS ECR 프라이빗 저장소를 생성하는 예시 입니다.
 
 ```
+module "ctx" {
+  source = "../context"
+}
+
 module "ecr" {
   source = "../tfmodule-aws-ecr"
   
@@ -17,15 +21,11 @@ module "ecr" {
   image_tag_mutability = "IMMUTABLE"
   scan_images_on_push  = true
   
-  tags        = {
-    Project     = "simple"
-    Environment = "Test"
-    Team        = "DX"
-    Owner       = "symplesims@email.com"
-  }
+  tags                 = module.ctx.tags
   
 }
 ```
+
 
 ## Input Variables
 
@@ -45,6 +45,7 @@ module "ecr" {
 |------|-------------|---------| 
 | repository_url_map | ECR 리포지토리 저장소 이름 및 URL 정보 입니다. | <pre>repository_url_map = {<br>  "sample-golang-service" = "11111111.ecr.REGION.amazonaws.com/sample-golang-service"<br>  "sample-spring-service" = "11111111.ecr.REGION.amazonaws.com/sample-spring-service"<br>}</pre> |
 | repository_arn_map | ECR 리포지토리 리소스의 이름 및 ARN 식별자 정보 입니다. | <pre>repository_arn_map = {<br>  sample-golang-service = "arn:aws:ecr:REGION:ACCOUNT:repository/sample-golang-service"<br>  sample-spring-service = "arn:aws:ecr:REGION:ACCOUNT:repository/sample-spring-service"<br>}</pre> |
+
 
 ## ECR Access
 

@@ -81,10 +81,9 @@ aws iam list-users --query 'Users[].UserName'
 ]
 ```
 
-## AWS 주요 서비스
-| Service   |  Description | 
-| :-----:   | :-----       | 
-| [VPC](10-vpc/README.md)  | AWS [VPC](https://docs.aws.amazon.com/vpc/index.html) 를 구성 합니다. | 
-| [EKS](20-eks/README.md)  | AWS [EKS](https://docs.aws.amazon.com/ko_kr/eks/index.html) 클러스터를 구성 합니다. | 
+## AWS 주요 서비스 구성 가이드 
+테라폼 모듈을 통해 AWS 클라우드의 주요 서비스를 구성 합니다.
 
-
+1. AWS 클라우드의 기본 환경인 [VPC](10-vpc/README.md) 서비스를 구성 합니다.
+2. AWS 클라우드의 쿠버네티스 클러스터 환경인 [EKS](20-eks/README.md) 서비스를 구성 합니다.
+3. ECS 또는 EKS 서비스가 참조 할 [ECR](20-eks/README.md) 서비스를 구성 합니다.
