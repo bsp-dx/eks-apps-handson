@@ -80,5 +80,3 @@ data "aws_iam_policy_document" "this" {
     data.aws_iam_policy_document.empty[0].json
   ])
 }
-
-# aws ecr get-login-password --region ap-northeast-2 | docker login --username seonbo.shim@bespinglobal.com --password-stdin 827519537363.dkr.ecr.ap-northeast-2.amazonaws.com/melonops

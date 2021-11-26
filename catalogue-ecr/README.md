@@ -1,6 +1,30 @@
 # ECR
+AWS ECR 프라이빗 저장소를 생성 합니다.  
+ECS 또는 EKS 서비스에 의해 사용 되며 code 시리즈 등과 통합되어 애플리케이션 CICD 자동화에 사용 되기도 합니다.
 
-AWS ECR 프라이빗 저장소를 생성 합니다.
+## 주요 리소스
+ 
+ECR 서비스를 구성하는 주요 리소스는 다음과 같습니다.
+
+|  Service          | Resource              |  Description |
+| :-------------:   | :-------------        | :----------- |
+| ECR               | Image                 | AWS ECR 저장소 서비스를 제공 합니다. 도커 이미지와 같은 컨테이너 이미지를 관리 합니다. |   
+| ECR               | Permissions           | AWS ECR 저장소 액세스하는 IAM 권한 정책을 구성 합니다. |   
+| ECR               | Lifecycle Policy      | AWS ECR 저장소에 관리되는 컨테이너 이미지에 대해 수명주기 정책을 관리 합니다. |   
+| ECR               | Tags                  | AWS ECR 저장소 태그 정보를 관리 합니다. |   
+
+## Build
+Terraform 을 통해 AWS 클라우드에 ECR 서비스를 생성(Provisioning) 합니다.  
+
+```
+git clone https://github.com/bsp-dx/eks-apps-handson.git
+cd eks-apps-handson/catalogue-ecr
+
+terraform init
+terraform plan
+terraform apply
+```
+
 
 ## Example
 
@@ -64,7 +88,7 @@ ECR access-token 값 조회 및 Docker 로그인
 
 ```
 # export ECR_IMAGE_URI=<YOUR_ECR_REPOSITORY_URI>
-export ECR_IMAGE_URI=827519537363.dkr.ecr.ap-northeast-2.amazonaws.com/sample-golang-service
+export ECR_IMAGE_URI=<AWS_ACCOUNT>.dkr.ecr.<AWS_REGION>.amazonaws.com/<IMAGE_NAME>
 aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${ECR_IMAGE_URI}
 ```
 
