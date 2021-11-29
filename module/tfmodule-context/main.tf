@@ -2,10 +2,10 @@ output "context" {
   value = {
     aws_profile  = var.context.aws_profile
     region       = var.context.region
-    region_alias = var.context.region_alias
+    region_alias = local.region_alias
     project      = var.context.project
     environment  = var.context.environment
-    env_alias    = var.context.env_alias
+    env_alias    = local.env_alias
     owner        = var.context.owner
     team         = var.context.team
     cost_center  = var.context.cost_center
