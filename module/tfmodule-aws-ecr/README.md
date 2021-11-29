@@ -4,7 +4,7 @@ AWS ECR 프라이빗 저장소를 생성 합니다.
 
 ## Example
 
-ERC 테라폼 모듈을 통해 AWS ECR 프라이빗 저장소를 생성하는 예시 입니다.
+테라폼 모듈을 통해 AWS ECR 프라이빗 저장소를 생성 합니다.
 
 ```
 module "ecr" {
