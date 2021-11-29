@@ -181,4 +181,7 @@ resource "aws_autoscaling_schedule" "this" {
   # [Minute] [Hour] [Day_of_Month] [Month_of_Year] [Day_of_Week]
   # Cron examples: https://crontab.guru/examples.html
   recurrence = lookup(each.value, "recurrence", null)
+
+  depends_on = [aws_iam_service_linked_role.this]
+
 }

@@ -1,4 +1,5 @@
 locals {
+  lt_name = "${var.context.name_prefix}-${var.name}-lt"
   name = "${var.context.name_prefix}-${var.name}"
 
   tags = var.context.tags
@@ -7,7 +8,7 @@ locals {
 resource "aws_launch_template" "this" {
   count = length(var.name) > 1 ? 1 : 0
 
-  name        = local.name
+  name        = local.lt_name
   description = var.description
 
   ebs_optimized = var.ebs_optimized
@@ -201,5 +202,5 @@ resource "aws_launch_template" "this" {
     create_before_destroy = true
   }
 
-  tags = merge(local.tags, {Name = local.name})
+  tags = merge(local.tags, {Name = local.lt_name})
 }
