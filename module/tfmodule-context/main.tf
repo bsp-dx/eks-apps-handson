@@ -46,7 +46,7 @@ output "region" {
 }
 
 output "region_alias" {
-  value = var.context.region_alias
+  value = local.region_alias
 }
 
 output "project" {
@@ -58,7 +58,7 @@ output "environment" {
 }
 
 output "env_alias" {
-  value = var.context.env_alias
+  value = local.env_alias
 }
 
 output "owner" {
