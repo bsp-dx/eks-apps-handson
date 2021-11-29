@@ -3,6 +3,11 @@ output "launch_template_id" {
   value       = try(aws_launch_template.this[0].id, "")
 }
 
+output "launch_template_name" {
+  description = "The name of the launch template"
+  value       = try(aws_launch_template.this[0].name, "")
+}
+
 output "launch_template_arn" {
   description = "The ARN of the launch template"
   value       = try(aws_launch_template.this[0].arn, "")

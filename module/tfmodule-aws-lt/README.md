@@ -82,5 +82,6 @@ module "my_web" {
 | Name | Description | Example |
 |------|-------------|------|
 | launch_template_id | launch template 아이디 입니다. | "lt-0fb6ea8dbbfbe80c9" |
+| launch_template_name | launch template 이름 입니다. | "my-web-lt" |
 | launch_template_arn | launch template ARN 입니다. | "arn:aws:ec2:ap-northeast-2:11111111:launch-template/lt-0fb6ea8dbbfbe80c9" |
 | launch_template_latest_version | launch template 최근 버전 입니다. | 1 |
