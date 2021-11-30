@@ -3,8 +3,6 @@ data "aws_default_tags" "current" {}
 locals {
   name = "${var.context.name_prefix}-${var.name}-asg"
   instance_name = "${var.context.name_prefix}-${var.name}"
-
-  service_linked_role_arn = (var.service_linked_role_arn == null && var.create_service_linked_role) ? try(aws_iam_service_linked_role.this[0].arn, []) : var.service_linked_role_arn
 }
 
 ################################################################################
@@ -47,7 +45,7 @@ resource "aws_autoscaling_group" "this" {
 
   enabled_metrics         = var.enabled_metrics
   metrics_granularity     = var.metrics_granularity
-  service_linked_role_arn = local.service_linked_role_arn
+  service_linked_role_arn = var.service_linked_role_arn
 
   dynamic "initial_lifecycle_hook" {
     for_each = var.initial_lifecycle_hooks
@@ -181,7 +179,5 @@ resource "aws_autoscaling_schedule" "this" {
   # [Minute] [Hour] [Day_of_Month] [Month_of_Year] [Day_of_Week]
   # Cron examples: https://crontab.guru/examples.html
   recurrence = lookup(each.value, "recurrence", null)
-
-  depends_on = [aws_iam_service_linked_role.this]
 
 }

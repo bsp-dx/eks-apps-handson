@@ -151,12 +151,6 @@ variable "service_linked_role_arn" {
   default     = null
 }
 
-variable "create_service_linked_role" {
-  description = "Determines whether to create service linked role for autoscaling or not"
-  type = bool
-  default = false
-}
-
 variable "initial_lifecycle_hooks" {
   description = "One or more Lifecycle Hooks to attach to the Auto Scaling Group before instances are launched. The syntax is exactly the same as the separate `aws_autoscaling_lifecycle_hook` resource, without the `autoscaling_group_name` attribute. Please note that this will only work when creating a new Auto Scaling Group. For all other use-cases, please use `aws_autoscaling_lifecycle_hook` resource"
   type        = list(map(string))
