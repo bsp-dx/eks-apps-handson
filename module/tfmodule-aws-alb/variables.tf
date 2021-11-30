@@ -4,6 +4,12 @@ variable "create_lb" {
   default     = true
 }
 
+variable "lb_name" {
+  description = "The name of Load Balancer"
+  type        = string
+  default     = null
+}
+
 variable "drop_invalid_header_fields" {
   description = "Indicates whether invalid header fields are dropped in application load balancers. Defaults to false."
   type        = bool

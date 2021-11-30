@@ -1,11 +1,11 @@
 locals {
   load_balancer_alias = var.load_balancer_type == "application" ? "alb" : "nlb"
-  name = "${var.context.name_prefix}-${local.load_balancer_alias}"
+  name = var.lb_name == null ? "${var.context.name_prefix}-${local.load_balancer_alias}" : "${var.context.name_prefix}-${var.lb_name}-${local.load_balancer_alias}"
 }
 
 resource "aws_lb" "this" {
-  count = var.create_lb ? 1 : 0
-  name        = local.name
+  count     = var.create_lb ? 1 : 0
+  name      = local.name
 
   load_balancer_type = var.load_balancer_type
   internal           = var.internal
