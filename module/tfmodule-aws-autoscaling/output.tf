@@ -63,10 +63,6 @@ output "autoscaling_group_target_group_arns" {
   value       = try(aws_autoscaling_group.this[0].target_group_arns, [])
 }
 
-output "service_linked_role_arn" {
-  description = "IAM EC2 service linked role ARNs that apply to this AutoScaling Group"
-  value       = try(aws_iam_service_linked_role.this[0].arn, [])
-}
 
 ################################################################################
 # Autoscaling group schedule
